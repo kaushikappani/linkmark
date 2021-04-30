@@ -29,3 +29,15 @@
      justify-content: center;
      margin: 2px;
  }
+
+ .favicon {
+     width: 25px;
+     height: 25px
+ }
+
+ .fav-th {
+     margin: 0 !important;
+     padding: 8px !important;
+     width: 30px !important;
+     vertical-align: middle;
+ }

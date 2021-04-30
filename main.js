@@ -2,12 +2,15 @@ chrome.tabs.query({
     currentWindow: true,
     active: true
 }, function (tabs) {
-    console.log(tabs[0].url);
+    console.log(tabs);
     const tabUrl = document.getElementById('url')
     if (tabUrl) {
         tabUrl.innerHTML = tabs[0].title
         tabUrl.href = tabs[0].url
         tabUrl.data = tabs[0].title
+        if (tabs[0].favIconUrl) {
+            document.querySelector('.current_favicon').src = tabs[0].favIconUrl
+        }
     }
 });
 
@@ -16,8 +19,10 @@ var template = '';
 const fetch = () => {
     for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).startsWith("saved")) {
+            
             localData = JSON.parse(localStorage.getItem(localStorage.key(i)))
             template += `<tr>`
+            template += `  <th class="fav-th" scope="col"> <img class="favicon" src="icon.png" alt=""></th>`
             template += `<td> <a target="_blank" href=${localData.url}>${localData.title}</a> </td>`
             template += `<td><button data-key="saved-${localData.url}" class="btn delete"> <img src="x-circle-fill.svg"></button></td>`
             template += `</tr>`
