@@ -1,0 +1,26 @@
+{
+    "manifest_version" : 2,
+    "name": "linkmark",
+    "version":"1.0.0",
+    "description":"Save the link for the future use",
+    "author":"Appani Kaushik",
+    "icons":{
+        "128":"icon-128.png"
+    },
+    "browser_action":{
+        "default_icon":"icon.png",
+        "default_title":"linkmark",
+        "default_popup":"main.html"
+    },
+    "permissions":["activeTab","storage","tabs"],
+    "background":{
+        "scripts":["main.js"]
+    },
+    "content_scripts":[
+        {"matches" : ["<all_urls>"],
+            "run_at": "document_start",
+        "js":["content.js"]
+        }
+
+    ]
+}
