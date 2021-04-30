@@ -1,0 +1,32 @@
+ body {
+     width: 500px;
+     height: 300px;
+     background-color: #121212;
+     color: #d5d5d5
+ }
+
+ button {
+     padding: 0 !important;
+     border: 0 !important;
+     float: right;
+ }
+
+ a {
+     text-decoration: none;
+     color: #d5d5d5
+ }
+
+ h6 {
+     text-align: center;
+     margin: 2px
+ }
+
+ footer {
+     position: fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     justify-content: center;
+     margin-top: 15px;
+     margin-bottom: 2px;
+ }
