@@ -19,10 +19,10 @@ var template = '';
 const fetch = () => {
     for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).startsWith("saved")) {
-            
+
             localData = JSON.parse(localStorage.getItem(localStorage.key(i)))
             template += `<tr>`
-            template += `  <th class="fav-th" scope="col"> <img class="favicon" src="icon.png" alt=""></th>`
+            template += `  <th class="fav-th" scope="col"> <img class="favicon" src="${localData.favIconUrl}" alt=""></th>`
             template += `<td> <a target="_blank" href=${localData.url}>${localData.title}</a> </td>`
             template += `<td><button data-key="saved-${localData.url}" class="btn delete"> <img src="x-circle-fill.svg"></button></td>`
             template += `</tr>`
@@ -38,9 +38,11 @@ if (saveBtn) {
     saveBtn.addEventListener('click', () => {
         const url = document.getElementById('url').href;
         const title = document.getElementById('url').innerHTML
+        const favIconUrl = document.querySelector('.current_favicon').src
         var data = ({
             url,
-            title
+            title,
+            favIconUrl
         })
         localStorage.setItem(`saved-${url}`, JSON.stringify(data))
         location.reload();
@@ -68,4 +70,17 @@ for (let i = 0, len = buttons.length; i < len; i++) {
         console.log(this)
     })
 }
+};
+
+var getFavicon = function(){
+    var favicon = undefined;
+    var nodeList = document.getElementsByTagName("link");
+    for (var i = 0; i < nodeList.length; i++)
+    {
+        if((nodeList[i].getAttribute("rel") == "icon")||(nodeList[i].getAttribute("rel") == "shortcut icon"))
+        {
+            favicon = nodeList[i].getAttribute("href");
+        }
+    }
+    return favicon;        
 }
