@@ -10,6 +10,8 @@ chrome.tabs.query({
         tabUrl.data = tabs[0].title
     }
 });
+
+//display saved items
 var template = '';
 const fetch = () => {
     for (var i = 0; i < localStorage.length; i++) {
@@ -17,7 +19,7 @@ const fetch = () => {
             localData = JSON.parse(localStorage.getItem(localStorage.key(i)))
             template += `<tr>`
             template += `<td> <a target="_blank" href=${localData.url}>${localData.title}</a> </td>`
-            template += `<td><button class="btn"> <img src="x-circle-fill.svg"></button></td>`
+            template += `<td><button data-key="saved-${localData.url}" class="btn delete"> <img src="x-circle-fill.svg"></button></td>`
             template += `</tr>`
 
         }
@@ -25,7 +27,7 @@ const fetch = () => {
     document.querySelector('.saved-data').innerHTML = template
 }
 
-
+//save current url
 const saveBtn = document.getElementById('saveBtn');
 if (saveBtn) {
     saveBtn.addEventListener('click', () => {
@@ -40,10 +42,25 @@ if (saveBtn) {
     })
 }
 
-
-
-
-
 if (document.querySelector('.saved-data')) {
     fetch();
+}
+
+
+//delete 
+let buttons = document.querySelectorAll('.delete');
+
+if (buttons) {
+    function removeThis(element) {
+    var dataKey = element.getAttribute('data-key');
+    localStorage.removeItem(dataKey);
+    location.reload();
+
+}
+for (let i = 0, len = buttons.length; i < len; i++) {
+    buttons[i].addEventListener('click', function (event) {
+        removeThis(this);
+        console.log(this)
+    })
+}
 }
