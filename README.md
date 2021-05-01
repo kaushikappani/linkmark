@@ -19,12 +19,12 @@ A simple Web browser extension build with javascript to save links
   <img src="screenshort/step2.jpg">
  </p>
 
-  * Open web browser (Opera, Google Chrome, Microsoft Edge) and click on ** Manage extensions **.
+  * Open web browser (Opera, Google Chrome, Microsoft Edge) and click on **Manage extensions**.
 <p align="center">
   <img src="screenshort/step 3.jpg">
  </p>
 
-  * ** Turn on the developer mode ** and click on the ** Load unpacked ** and select the extracted (unzip file) file.
+  * **Turn on the developer mode** and click on the **Load unpacked** and select the extracted (unzip file) file.
 <p align="center">
   <img src="screenshort/step 4.jpg">
  </p>
