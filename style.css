@@ -18,10 +18,11 @@
 
  h6 {
      text-align: center;
-     margin: 2px
+     margin: 4px
  }
 
  .footer {
+     background-color: #121212;
      position: fixed;
      left: 0;
      bottom: 0;
