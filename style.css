@@ -1,44 +1,63 @@
- body {
-     width: 500px;
-     height: 300px;
-     background-color: #121212;
-     color: #d5d5d5
- }
+::-webkit-scrollbar {
+    width: 10px;
+}
 
- button {
-     padding: 0 !important;
-     border: 0 !important;
-     float: right;
- }
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
 
- a {
-     text-decoration: none;
-     color: #d5d5d5
- }
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
 
- h6 {
-     text-align: center;
-     margin: 4px
- }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 
- .footer {
-     background-color: #121212;
-     position: fixed;
-     left: 0;
-     bottom: 0;
-     width: 100%;
-     justify-content: center;
-     margin: 2px;
- }
+body {
+    width: 500px;
+    height: 300px;
+    background-color: #121212;
+    color: #d5d5d5
+}
 
- .favicon {
-     width: 25px;
-     height: 25px
- }
+button {
+    padding: 0 !important;
+    border: 0 !important;
+    float: right;
+}
 
- .fav-th {
-     margin: 0 !important;
-     padding: 8px !important;
-     width: 30px !important;
-     vertical-align: middle;
- }
+a {
+    text-decoration: none;
+    color: #d5d5d5
+}
+
+h6 {
+    text-align: center;
+    margin: 4px
+}
+
+.footer {
+    background-color: #121212;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.favicon {
+    width: 25px;
+    height: 25px
+}
+
+.fav-th {
+    margin: 0 !important;
+    padding: 8px !important;
+    width: 30px !important;
+    vertical-align: middle;
+}

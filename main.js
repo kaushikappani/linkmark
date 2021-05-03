@@ -59,15 +59,20 @@ let buttons = document.querySelectorAll('.delete');
 
 if (buttons) {
     function removeThis(element) {
-    var dataKey = element.getAttribute('data-key');
-    localStorage.removeItem(dataKey);
-    location.reload();
+        var dataKey = element.getAttribute('data-key');
+        localStorage.removeItem(dataKey);
+        location.reload();
 
-}
-for (let i = 0, len = buttons.length; i < len; i++) {
-    buttons[i].addEventListener('click', function (event) {
-        removeThis(this);
-        console.log(this)
-    })
-}
+    }
+    for (let i = 0, len = buttons.length; i < len; i++) {
+        buttons[i].addEventListener('click', function (event) {
+            removeThis(this);
+            console.log(this)
+        })
+    }
 };
+
+
+chrome.tabs.query({}, (data) => {
+    console.log(data)
+})
