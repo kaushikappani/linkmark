@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "linkmark",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Save the link for the future use",
     "author": "Appani Kaushik",
     "icons": {
