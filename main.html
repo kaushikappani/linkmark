@@ -12,20 +12,47 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
+  
 
 <body>
+     <div id="overlay">
+        <div id="progstat"></div>
+        <div id="progress"></div>
+      </div>
   <h6>LINKMARK | SAVE YOUR LINKS HERE </h6>
-  <table class="table table-dark table-striped">
+
+  <table class="table table-dark table-striped" style="margin-bottom: 0;">
     <thead>
       <tr>
         <th class="fav-th" scope="col"> <img class="current_favicon favicon" src="icon.png" alt=""></th>
-        <th scope="col">(Current) <a target="_blank" id="url" href=""></a></th>
-        <th style="vertical-align: middle;" scope="col"> <button style="padding: 0; border: 0;" class="btn" id="saveBtn"><img src="heart-fill.svg" alt=""></button> </th>
+        <th scope="col">(Current) <a target="_blank" id="url" href=""></a>
+          <p class='save-to'>Save to General</p>
+        </th>
+        <th style="vertical-align: middle;" scope="col"> <button style="padding: 0; border: 0;" class="btn save"
+            id="saveBtn"><img src="heart-fill.svg" alt=""></button> </th>
       </tr>
     </thead>
+  </table>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <button data-key="General" class="btn btn-outline-primary btn-group btn-general">General (<span class="badge badge-general">9</span>)</button>
+      </div>
+      <div class="col-6">
+        <button  data-key="Work" class="btn btn-outline-primary btn-group btn-work">Work  (<span class="badge badge-work">9</span>)</button>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-dark table-striped">
     <tbody class="saved-data">
+
     </tbody>
   </table>
+
+
+
   <br>
   <div class="container footer">
     <div class="row">
@@ -37,4 +64,5 @@
   <script src="main.js"></script>
 
 </body>
+
 </html>

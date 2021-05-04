@@ -15,18 +15,21 @@ chrome.tabs.query({
 });
 
 //display saved items
-var template = '';
+
 const fetch = () => {
+    var template = '';
     for (var i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i).startsWith("saved")) {
 
-            localData = JSON.parse(localStorage.getItem(localStorage.key(i)))
-            template += `<tr>`
-            template += `  <th class="fav-th" scope="col"> <img class="favicon" src="${localData.favIconUrl}" alt=""></th>`
-            template += `<td> <a target="_blank" href=${localData.url}>${localData.title}</a> </td>`
-            template += `<td><button data-key="saved-${localData.url}" class="btn delete"> <img src="x-circle-fill.svg"></button></td>`
-            template += `</tr>`
+            localData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            if (localData.group == localStorage.getItem("selected")) {
 
+                template += `<tr>`
+                template += `  <th class="fav-th" scope="col"> <img class="favicon" src="${localData.favIconUrl}" alt=""></th>`
+                template += `<td> <a target="_blank" href=${localData.url}>${localData.title}</a> </td>`
+                template += `<td><button data-key="saved-${localData.url}" class="btn delete"> <img src="x-circle-fill.svg"></button></td>`
+                template += `</tr>`
+            }
         }
     };
     document.querySelector('.saved-data').innerHTML = template
@@ -39,10 +42,12 @@ if (saveBtn) {
         const url = document.getElementById('url').href;
         const title = document.getElementById('url').innerHTML
         const favIconUrl = document.querySelector('.current_favicon').src
+        const group = localStorage.getItem('selected') || "General";
         var data = ({
             url,
             title,
-            favIconUrl
+            favIconUrl,
+            group
         })
         localStorage.setItem(`saved-${url}`, JSON.stringify(data))
         location.reload();
@@ -72,7 +77,57 @@ if (buttons) {
     }
 };
 
+if (!localStorage.getItem('selected')) {
+    localStorage.setItem('selected', 'General');
+}
 
-chrome.tabs.query({}, (data) => {
-    console.log(data)
-})
+const btnGrp = document.querySelectorAll(".btn-group");
+if (btnGrp) {
+    for (let i = 0; i < btnGrp.length; i++) {
+        btnGrp[i].addEventListener('click', () => {
+            localStorage.setItem('selected', btnGrp[i].getAttribute('data-key'));
+            document.querySelector('.save-to').innerHTML = `Save to ${localStorage.getItem('selected')}`
+            changeClass();
+            fetch();
+            location.reload();
+        })
+    }
+}
+
+let changeClass = () => {
+    if (document.querySelector('.save-to')) {
+        document.querySelector('.save-to').innerHTML = `Save to ${localStorage.getItem('selected')}`
+    }
+    let item = localStorage.getItem('selected');
+    for (let i = 0; i < btnGrp.length; i++) {
+        if (btnGrp[i].getAttribute('data-key') == item) {
+            btnGrp[i].classList.add("selected");
+        } else {
+            btnGrp[i].classList.remove("selected");
+        }
+    }
+};
+
+changeClass();
+
+// badge numbers
+
+const BadgeNumber = () => {
+    let generalCount = 0;
+    let workCount = 0;
+    for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).startsWith("saved")) {
+            data = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            if (data.group == 'General') {
+                generalCount++;
+            } if (data.group == 'Work') {
+                workCount++
+            } else {
+                continue
+            }
+        }
+    }
+    document.querySelector('.badge-general').innerHTML = generalCount;
+    document.querySelector('.badge-work').innerHTML = workCount
+}
+BadgeNumber();

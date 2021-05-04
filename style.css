@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
 }
 
 /* Track */
@@ -24,7 +24,13 @@ body {
     color: #d5d5d5
 }
 
-button {
+.delete {
+    padding: 0 !important;
+    border: 0 !important;
+    float: right;
+}
+
+.save {
     padding: 0 !important;
     border: 0 !important;
     float: right;
@@ -60,4 +66,47 @@ h6 {
     padding: 8px !important;
     width: 30px !important;
     vertical-align: middle;
+}
+
+.btn-group {
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+}
+
+.col-6 {
+    padding: 0%;
+}
+
+.btn-outline-primary {
+    color: #d5d5d5;
+    border: 0px;
+}
+
+.btn-outline-primary:hover {
+    background-color: #018786;
+}
+
+.selected {
+    background-color: #018786;
+}
+
+.save-to {
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* badge */
+
+.badge {
+    background-color: none;
+    position: relative;
+    top: 2px !important;
+    padding: 5.5px 1px 5px 1px !important;
 }
