@@ -81,14 +81,16 @@ h6 {
 .btn-outline-primary {
     color: #d5d5d5;
     border: 0px;
+    border-radius: 0%
 }
 
 .btn-outline-primary:hover {
-    background-color: #018786;
+    background-color: #121212;
+    border-bottom: 5px solid #018786;
 }
 
 .selected {
-    background-color: #018786;
+    border-bottom: 5px solid #018786;
 }
 
 .save-to {

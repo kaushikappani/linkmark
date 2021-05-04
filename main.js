@@ -81,6 +81,7 @@ if (!localStorage.getItem('selected')) {
     localStorage.setItem('selected', 'General');
 }
 
+//group select
 const btnGrp = document.querySelectorAll(".btn-group");
 if (btnGrp) {
     for (let i = 0; i < btnGrp.length; i++) {
