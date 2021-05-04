@@ -127,7 +127,9 @@ const BadgeNumber = () => {
             }
         }
     }
+    if (document.querySelector('.badge-general')) {
     document.querySelector('.badge-general').innerHTML = generalCount;
     document.querySelector('.badge-work').innerHTML = workCount
+    }
 }
 BadgeNumber();
