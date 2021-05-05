@@ -33,3 +33,6 @@ A simple Web browser extension build with javascript to save links
 <p align="center">
   <img src="screenshort/step 5.jpg">
  </p>
+ 
+ * Add by clicking on the like button
+ * You can directly add by left click on link
