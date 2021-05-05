@@ -26,7 +26,7 @@ const fetch = () => {
 
                 template += `<tr>`
                 template += `  <th class="fav-th" scope="col"> <img class="favicon" src="${localData.favIconUrl}" alt=""></th>`
-                template += `<td> <a target="_blank" href=${localData.url}>${localData.title}</a> </td>`
+                template += `<td style="max-width:350px;overflow:hidden"> <a target="_blank" href=${localData.url}>${localData.title}</a> </td>`
                 template += `<td><button data-key="saved-${localData.url}" class="btn delete"> <img src="x-circle-fill.svg"></button></td>`
                 template += `</tr>`
             }

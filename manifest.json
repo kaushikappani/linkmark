@@ -12,12 +12,12 @@
         "default_title": "linkmark",
         "default_popup": "main.html"
     },
-    "permissions": ["activeTab", "storage", "tabs"],
+    "permissions": ["activeTab", "storage", "tabs","unlimitedStorage","contextMenus", "notifications"],
     "content_scripts": [{
         "matches": ["<all_urls>"],
         "js": ["content.js"]
     }],
     "background": {
-        "scripts": ["main.js"]
+        "scripts": ["main.js","event.js"]
     }
 }
