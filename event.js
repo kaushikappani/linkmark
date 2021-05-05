@@ -11,7 +11,12 @@ chrome.contextMenus.onClicked.addListener(function (clickData) {
         url: clickData.linkUrl,
         complete: function (htmlData) {
             var response = htmlData.responseText;
-            var title = response.match(/<title[^>]*>([^<]+)<\/title>/)[1];
+            if (response.match(/<title[^>]*>([^<]+)<\/title>/) == null) {
+                var title = clickData.linkUrl 
+            } else {
+                var title = response.match(/<title[^>]*>([^<]+)<\/title>/)[1] ||clickData.linkUrl ;
+            }
+                
             let data = ({
                 url: clickData.linkUrl,
                 group: localStorage.getItem('selected'),
