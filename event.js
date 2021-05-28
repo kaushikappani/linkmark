@@ -4,6 +4,7 @@ var menuItem = {
     "contexts": ["link"]
 };
 
+
 chrome.contextMenus.create(menuItem);
 
 chrome.contextMenus.onClicked.addListener(function (clickData) {
@@ -12,11 +13,11 @@ chrome.contextMenus.onClicked.addListener(function (clickData) {
         complete: function (htmlData) {
             var response = htmlData.responseText;
             if (response.match(/<title[^>]*>([^<]+)<\/title>/) == null) {
-                var title = clickData.linkUrl 
+                var title = clickData.linkUrl
             } else {
-                var title = response.match(/<title[^>]*>([^<]+)<\/title>/)[1] ||clickData.linkUrl ;
+                var title = response.match(/<title[^>]*>([^<]+)<\/title>/)[1] || clickData.linkUrl;
             }
-                
+
             let data = ({
                 url: clickData.linkUrl,
                 group: localStorage.getItem('selected'),
@@ -35,7 +36,46 @@ chrome.contextMenus.onClicked.addListener(function (clickData) {
             chrome.notifications.create('AddedNotify', notifOptions);
             response = '';
         }
-        
+
     });
 
+});
+
+const checkIcon = () => {
+    let urlList = [];
+    for (var i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).startsWith("saved")) {
+            let localData = JSON.parse(localStorage.getItem(localStorage.key(i)));
+            urlList.push(localData.url);
+
+        }
+    };
+
+    chrome.tabs.query({
+        currentWindow: true,
+        active: true
+    }, function (tabs) {
+        for (let i = 0; i < urlList.length; i++) {
+            if (urlList[i] === tabs[0].url) {
+                return chrome.browserAction.setIcon({
+                    path: {
+                        19: "heart-fill.svg"
+                    }
+                });
+            } else {
+                chrome.browserAction.setIcon({
+                    path: {
+                        19: "icon.png"
+                    }
+                });
+            }
+        }
+    });
+}
+chrome.tabs.onUpdated.addListener(function () {
+    checkIcon();
+});
+
+chrome.tabs.onActiveChanged.addListener(function () {
+    checkIcon();
 });

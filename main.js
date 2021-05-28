@@ -39,6 +39,11 @@ const fetch = () => {
 const saveBtn = document.getElementById('saveBtn');
 if (saveBtn) {
     saveBtn.addEventListener('click', () => {
+        chrome.browserAction.setIcon({
+            path: {
+                19: "heart-fill.svg"
+            }
+        });
         const url = document.getElementById('url').href;
         const title = document.getElementById('url').innerHTML
         const favIconUrl = document.querySelector('.current_favicon').src
@@ -72,6 +77,11 @@ if (buttons) {
     for (let i = 0, len = buttons.length; i < len; i++) {
         buttons[i].addEventListener('click', function (event) {
             removeThis(this);
+            chrome.browserAction.setIcon({
+                path: {
+                    19: "icon.png"
+                }
+            });
             console.log(this)
         })
     }
@@ -121,7 +131,8 @@ const BadgeNumber = () => {
             data = JSON.parse(localStorage.getItem(localStorage.key(i)));
             if (data.group == 'General') {
                 generalCount++;
-            } if (data.group == 'Work') {
+            }
+            if (data.group == 'Work') {
                 workCount++
             } else {
                 continue
@@ -129,8 +140,8 @@ const BadgeNumber = () => {
         }
     }
     if (document.querySelector('.badge-general')) {
-    document.querySelector('.badge-general').innerHTML = generalCount;
-    document.querySelector('.badge-work').innerHTML = workCount
+        document.querySelector('.badge-general').innerHTML = generalCount;
+        document.querySelector('.badge-work').innerHTML = workCount
     }
 }
 BadgeNumber();
