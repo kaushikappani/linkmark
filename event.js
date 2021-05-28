@@ -63,11 +63,15 @@ const checkIcon = () => {
                     }
                 });
             } else {
-                chrome.browserAction.setIcon({
-                    path: {
-                        19: "icon.png"
-                    }
-                });
+                if (i == urlList.length-1) {
+                    chrome.browserAction.setIcon({
+                        path: {
+                            19: "icon.png"
+                        }
+                    });
+                } else {
+                    continue;
+                }
             }
         }
     });
