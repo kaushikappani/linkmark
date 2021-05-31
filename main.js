@@ -1,3 +1,4 @@
+let currentUrl;
 chrome.tabs.query({
     currentWindow: true,
     active: true
@@ -5,6 +6,7 @@ chrome.tabs.query({
     console.log(tabs);
     const tabUrl = document.getElementById('url')
     if (tabUrl) {
+        currentUrl = tabs[0].url;
         tabUrl.innerHTML = tabs[0].title
         tabUrl.href = tabs[0].url
         tabUrl.data = tabs[0].title
@@ -27,7 +29,7 @@ const fetch = () => {
                 template += `<tr>`
                 template += `  <th class="fav-th" scope="col"> <img class="favicon" src="${localData.favIconUrl}" alt=""></th>`
                 template += `<td style="max-width:350px;overflow:hidden"> <a target="_blank" href=${localData.url}>${localData.title}</a> </td>`
-                template += `<td><button data-key="saved-${localData.url}" class="btn delete"> <img src="x-circle-fill.svg"></button></td>`
+                template += `<td><button data-url="${localData.url}" data-key="saved-${localData.url}" class="btn delete"> <img src="x-circle-fill.svg"></button></td>`
                 template += `</tr>`
             }
         }
@@ -70,18 +72,18 @@ let buttons = document.querySelectorAll('.delete');
 if (buttons) {
     function removeThis(element) {
         var dataKey = element.getAttribute('data-key');
-        localStorage.removeItem(dataKey);
-        location.reload();
-
-    }
-    for (let i = 0, len = buttons.length; i < len; i++) {
-        buttons[i].addEventListener('click', function (event) {
-            removeThis(this);
-            chrome.browserAction.setIcon({
+        var dataUrl = element.getAttribute('data-url');
+        dataUrl===currentUrl && chrome.browserAction.setIcon({
                 path: {
                     19: "icon.png"
                 }
             });
+        localStorage.removeItem(dataKey);
+        location.reload();
+    }
+    for (let i = 0, len = buttons.length; i < len; i++) {
+        buttons[i].addEventListener('click', function (event) {
+            removeThis(this);
             console.log(this)
         })
     }
@@ -117,7 +119,7 @@ let changeClass = () => {
             btnGrp[i].classList.remove("selected");
         }
     }
-};
+}; 
 
 changeClass();
 
