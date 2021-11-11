@@ -43,13 +43,10 @@ chrome.contextMenus.onClicked.addListener(function (clickData) {
 
 const checkIcon = () => {
     let urlList = [];
-    for (var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i).startsWith("saved")) {
-            let localData = JSON.parse(localStorage.getItem(localStorage.key(i)));
-            urlList.push(localData.url);
-
-        }
-    };
+    let data = JSON.parse(localStorage.getItem("saved"))
+    data.map(e => {
+        urlList.push(e.url);
+    })
 
     chrome.tabs.query({
         currentWindow: true,
